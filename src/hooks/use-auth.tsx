@@ -28,8 +28,9 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
   const from: string = (location.state?.from?.pathname as string) || '/app';
 
   const handleLogin = useCallback(
-    (username: string, password: string) => {
-      if (username === 'test' && password === 'test') {
+    (email: string, password: string) => {
+      if (email === 'test@mailinator.com' && password === 'test') {
+        console.log('Login success!');
         setLoggedIn(true);
         navigate(from, { replace: true });
       }
