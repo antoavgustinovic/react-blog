@@ -1,4 +1,6 @@
+import { withLogger } from '@/components/logger';
 import SignInForm from '@/components/sign-in-form';
+import { HELLO_MESSAGE } from '@/constants/constants';
 
 function SignInPage() {
   return (
@@ -8,4 +10,4 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default withLogger(SignInPage, HELLO_MESSAGE);

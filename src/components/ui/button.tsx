@@ -1,3 +1,6 @@
+import { withLogger } from '@/components/logger';
+import { HELLO_MESSAGE } from '@/constants/constants';
+
 type ButtonProps = {
   children: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
@@ -13,4 +16,4 @@ const Button: React.FC<ButtonProps> = ({ children, ...otherProps }) => {
   );
 };
 
-export default Button;
+export default withLogger(Button, HELLO_MESSAGE);

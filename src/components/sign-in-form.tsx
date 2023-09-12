@@ -1,8 +1,15 @@
 import { useState } from 'react';
 
+import { withLogger } from '@/components/logger';
 import Button from '@/components/ui/button';
 import FormInput from '@/components/ui/form-input.js';
+import { HELLO_MESSAGE } from '@/constants/constants';
 import { useAuth } from '@/hooks/use-auth';
+
+interface SignInFormFieldProps {
+  email: string;
+  password: string;
+}
 
 const defaultFormFields = {
   email: '',
@@ -10,7 +17,7 @@ const defaultFormFields = {
 };
 
 const SignInForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const [formFields, setFormFields] = useState<SignInFormFieldProps>(defaultFormFields);
   const { handleLogin } = useAuth();
 
   const { email, password } = formFields;
@@ -46,4 +53,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default withLogger(SignInForm, HELLO_MESSAGE);

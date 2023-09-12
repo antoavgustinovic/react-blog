@@ -1,6 +1,8 @@
 import { createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider } from 'react-router-dom';
 
+import { withLogger } from '@/components/logger';
 import ProtectedRoute from '@/components/protected-route';
+import { HELLO_MESSAGE } from '@/constants/constants';
 import { AuthContextProvider } from '@/hooks/use-auth';
 import ErrorPage from '@/pages/error-page';
 import HomePage from '@/pages/home-page';
@@ -33,4 +35,4 @@ function App() {
   return <RouterProvider router={router} />;
 }
 
-export default App;
+export default withLogger(App, HELLO_MESSAGE);
