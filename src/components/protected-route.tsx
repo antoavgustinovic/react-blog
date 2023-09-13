@@ -1,8 +1,8 @@
 import { Navigate, useLocation } from 'react-router-dom';
 
-import { withLogger } from '@/components/logger';
-import { HELLO_MESSAGE } from '@/constants/constants';
-import { useAuth } from '@/hooks/use-auth';
+import Layout from '@/components/layout';
+import { withHelloLogger } from '@/components/logger';
+import { useAuth } from '@/context/auth-context';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { isLoggedIn } = useAuth();
@@ -12,7 +12,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 
-  return children;
+  return <Layout>{children}</Layout>;
 }
 
-export default withLogger(ProtectedRoute, HELLO_MESSAGE);
+export default withHelloLogger(ProtectedRoute);
