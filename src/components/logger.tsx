@@ -1,8 +1,13 @@
+import { HELLO_MESSAGE } from '@/constants/constants';
+
 export const withLogger = <P extends object>(WrappedComponent: React.ComponentType<P>, message: string) => {
-  return function WithLogger(props: P) {
+  return function withLogger(props: P) {
     const componentName = WrappedComponent.displayName || WrappedComponent.name || 'Component';
     console.log(`${message} ${componentName}`);
 
     return <WrappedComponent {...props} />;
   };
 };
+
+export const withHelloLogger = <P extends object>(WrappedComponent: React.ComponentType<P>) =>
+  withLogger(WrappedComponent, HELLO_MESSAGE);

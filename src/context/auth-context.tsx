@@ -1,7 +1,8 @@
 import { createContext, ReactNode, useCallback, useContext, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import useLocalStorage from './use-local-storage';
+import { withHelloLogger } from '@/components/logger';
+import useLocalStorage from '@/hooks/use-local-storage';
 
 const USER_LOGGED_IN = 'userLoggedIn';
 
@@ -17,7 +18,7 @@ export const AuthContext = createContext<AuthContextType>({
   handleLogout: () => {},
 });
 
-export function AuthContextProvider({ children }: { children: ReactNode }) {
+function AuthContextProvider({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [isLoggedIn, setLoggedIn, removeLoggedIn] = useLocalStorage<boolean>({
@@ -55,6 +56,9 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
+
+const AuthContextProviderWithHelloLogger = withHelloLogger(AuthContextProvider);
+export { AuthContextProviderWithHelloLogger as AuthContextProvider };
 
 export function useAuth() {
   return useContext(AuthContext);
