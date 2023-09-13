@@ -1,19 +1,19 @@
 import { useState } from 'react';
 
-import { withLogger } from '@/components/logger';
+import { withHelloLogger } from '@/components/logger';
 import Button from '@/components/ui/button';
 import FormInput from '@/components/ui/form-input.js';
-import { HELLO_MESSAGE } from '@/constants/constants';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/context/auth-context';
 
+// TODO create a Compound Form
 interface SignInFormFieldProps {
   email: string;
   password: string;
 }
 
 const defaultFormFields = {
-  email: '',
-  password: '',
+  email: 'test@mailinator.com',
+  password: 'test',
 };
 
 const SignInForm = () => {
@@ -38,9 +38,9 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="flex flex-col w-1/3 border-2 rounded-xl p-6">
-      <h2 className="my-2 text-4xl m-auto">Sign in</h2>
-      <span className="mb-6 opacity-50 m-auto">Sign in with your email and password</span>
+    <div className="flex flex-col w-1/3 border-2 rounded-xl p-6 bg-white">
+      <h2 className="my-2 text-4xl text-martian-dark m-auto">Sign in</h2>
+      <span className="mb-6 text-martian-darkgray opacity-50 m-auto">Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput label="Email" type="email" required onChange={handleChange} name="email" value={email} />
 
@@ -53,4 +53,4 @@ const SignInForm = () => {
   );
 };
 
-export default withLogger(SignInForm, HELLO_MESSAGE);
+export default withHelloLogger(SignInForm);

@@ -1,7 +1,6 @@
 import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
 
-import { withLogger } from '@/components/logger';
-import { HELLO_MESSAGE } from '@/constants/constants';
+import { withHelloLogger } from '@/components/logger';
 
 function ErrorPage() {
   const error = useRouteError();
@@ -11,4 +10,4 @@ function ErrorPage() {
   }
 }
 
-export default withLogger(ErrorPage, HELLO_MESSAGE);
+export default withHelloLogger(ErrorPage);

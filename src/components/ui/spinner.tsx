@@ -1,4 +1,4 @@
-import { withHelloLogger } from '../logger';
+import { withHelloLogger } from '@/components/logger';
 
 const Spinner: React.FC = () => {
   return (
