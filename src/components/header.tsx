@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <header className="flex items-center justify-between py-4">
-      <h1 className="text-4xl font-bold">
+      <h1 className="text-3xl font-bold">
         <a href="/app">
           React <span className="text-martian-red">Blog</span>
         </a>

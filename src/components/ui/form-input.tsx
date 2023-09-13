@@ -1,7 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-import { withLogger } from '@/components/logger';
-import { HELLO_MESSAGE } from '@/constants/constants';
+import { withHelloLogger } from '@/components/logger';
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -29,4 +28,4 @@ const FormInput: React.FC<FormInputProps> = ({ label, ...otherProps }) => {
   );
 };
 
-export default withLogger(FormInput, HELLO_MESSAGE);
+export default withHelloLogger(FormInput);

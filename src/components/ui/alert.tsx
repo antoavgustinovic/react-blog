@@ -3,13 +3,28 @@ import { twMerge } from 'tailwind-merge';
 
 import { withHelloLogger } from '@/components/logger';
 
-interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {}
+export const ALERT_TYPE = {
+  info: 'info',
+  danger: 'danger',
+};
 
-const Alert: React.FC<PropsWithChildren<AlertProps>> = ({ children, className, ...otherProps }) => {
+const getAlertColor = (buttonType = ALERT_TYPE.info) =>
+  ({
+    [ALERT_TYPE.info]: 'white',
+    [ALERT_TYPE.danger]: 'red',
+  })[buttonType];
+
+interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
+  alertType?: string;
+}
+
+const Alert: React.FC<PropsWithChildren<AlertProps>> = ({ children, alertType, className, ...otherProps }) => {
+  const alertColor = getAlertColor(alertType);
+
   return (
     <div
       className={twMerge(
-        'flex items-center p-4 mx-2 mt-2 mb-4 text-base text-red-800 border border-red-400 rounded-lg bg-red-200',
+        `flex items-center p-4 mx-2 mt-2 mb-4 text-base text-${alertColor}-800 border border-${alertColor}-400 rounded-lg bg-${alertColor}-200`,
         className,
       )}
       role="alert"
