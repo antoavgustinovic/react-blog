@@ -2,9 +2,10 @@ import { useMemo } from 'react';
 import { AxiosError } from 'axios';
 import useSWR from 'swr';
 
+import { USERS_URL_KEY } from '@/constants/constants';
 import { useUsers } from '@/hooks/use-users';
-import { fetcher } from '@/service/posts-service';
-import { PostResponse } from '@/types';
+import { fetcher } from '@/service/fetch-service';
+import { PostResponse, UserResponse } from '@/types';
 
 const POSTS_URL_KEY = 'posts';
 
@@ -43,50 +44,46 @@ export const usePosts = () => {
 };
 
 export const usePost = (id?: string) => {
-  // const {
-  //   data: post,
-  //   error: postError,
-  //   isLoading: postLoading,
-  // } = useSWR<PostResponse, AxiosError>(() => (id ? `${POSTS_URL_KEY}/${id}` : null), fetcher);
-  // const {
-  //   data: user,
-  //   error: userError,
-  //   isLoading: usersLoading,
-  // } = useSWR<UserResponse>(() => (post ? `${USERS_URL_KEY}/${post?.userId}` : null), fetcher);
+  const {
+    data: post,
+    error: postError,
+    isLoading: postLoading,
+  } = useSWR<PostResponse, AxiosError>(() => (id ? `${POSTS_URL_KEY}/${id}` : null), fetcher);
+  const {
+    data: user,
+    error: userError,
+    isLoading: usersLoading,
+  } = useSWR<UserResponse>(() => (post ? `${USERS_URL_KEY}/${post?.userId}` : null), fetcher);
 
-  // const postData = {
-  //   ...post,
-  //   author: user?.name,
-  // };
+  const postData = {
+    ...post,
+    author: user?.name,
+  };
 
-  // const error = postError || userError;
-  // const isLoading = postLoading || usersLoading;
+  const error = postError || userError;
+  const isLoading = postLoading || usersLoading;
 
-  // console.log('POST: ', postData);
-  // console.log('ID: ', id);
-
-  // return {
-  //   data: postData,
-  //   error,
-  //   isLoading,
-  // };
-  const { data: posts, error, isLoading } = usePosts();
-
-  console.log('POSTS: ', posts);
+  console.log('POST: ', postData);
   console.log('ID: ', id);
 
-  const post =
-    id &&
-    posts.find((post) => {
-      return post.id === +id;
-    });
-  console.log('POST: ', post);
-
   return {
-    data: post,
+    data: postData,
     error,
     isLoading,
   };
+  // const { data: posts, error, isLoading } = usePosts();
+
+  // const post =
+  //   id &&
+  //   posts.find((post) => {
+  //     return post.id === +id;
+  //   });
+
+  // return {
+  //   data: post,
+  //   error,
+  //   isLoading,
+  // };
 };
 
 // export const preloadPosts = () => preload(POSTS_URL_KEY, fetcher);
