@@ -18,7 +18,7 @@ const FormInput: React.FC<FormInputProps> = ({ label, ...otherProps }) => {
       {label && (
         <label
           className={`${
-            otherProps.value ? '-top-4 text-black text-xs' : 'top-2'
+            otherProps.value ? '-top-4 text-black text-xs' : 'text-martian-darkgray top-2'
           } text-subColor text-md font-normal absolute left-2 transition-all duration-300`}
         >
           {label}
