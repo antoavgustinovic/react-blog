@@ -1,10 +1,10 @@
 import { withHelloLogger } from '@/components/logger';
 import PostCard from '@/components/post-card';
 import Alert from '@/components/ui/alert';
-import { PostResponse } from '@/types';
+import { PostProps } from '@/types';
 
 interface PostListProps {
-  posts?: PostResponse[];
+  posts?: PostProps[];
 }
 
 const PostList: React.FC<PostListProps> = ({ posts }) => {

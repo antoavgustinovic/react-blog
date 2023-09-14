@@ -21,7 +21,7 @@ function HomePage() {
   const filteredPosts = useMemo(() => {
     return posts?.filter((post) => {
       const searchQuery = debouncedSearchValue.trim().toLowerCase();
-      return post.title.toLowerCase().startsWith(searchQuery);
+      return post.author.toLowerCase().startsWith(searchQuery);
     });
   }, [debouncedSearchValue, posts]);
 

@@ -6,14 +6,14 @@ import Post from '@/components/ui/post';
 import Spinner from '@/components/ui/spinner';
 import { usePost } from '@/hooks/use-posts';
 
-function BlogPage() {
+function PostPage() {
   const { id } = useParams();
   const { data: post, error, isLoading } = usePost(id);
 
   if (error) {
     return (
       <Alert alertType={ALERT_TYPE.info}>
-        There was an error while retrieving posts. Please refresh the page or try again later.
+        There was an error while retrieving the post. Please refresh the page or try again later.
       </Alert>
     );
   }
@@ -30,7 +30,7 @@ function BlogPage() {
     );
   }
 
-  return <Post title={post.title} body={post.body} author="" />;
+  return <Post title={post.title} body={post.body} author={post.author} />;
 }
 
-export default withHelloLogger(BlogPage);
+export default withHelloLogger(PostPage);

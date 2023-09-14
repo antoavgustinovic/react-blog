@@ -2,8 +2,8 @@ import { withHelloLogger } from '@/components/logger';
 import Avatar from '@/components/ui/avatar';
 
 interface PostProps {
-  title: string;
-  body: string;
+  title?: string;
+  body?: string;
   author?: string;
 }
 
