@@ -1,10 +1,22 @@
+import { twMerge } from 'tailwind-merge';
+
 import { withHelloLogger } from '@/components/logger';
 
 import { ReactComponent as AvatarLogo } from './../../../public/assets/avatar.svg';
 
-const Avatar = () => {
+// TODO: maybe the same for Button and Alert
+interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+  avatarType?: 'dark' | 'light';
+}
+
+const Avatar: React.FC<AvatarProps> = ({ avatarType }) => {
   return (
-    <div className="relative w-10 h-10 overflow-hidden bg-martian-dark rounded-full">
+    <div
+      className={twMerge(
+        'relative w-10 h-10 overflow-hidden rounded-full',
+        avatarType === 'light' ? 'bg-martian-lightgray' : 'bg-martian-dark',
+      )}
+    >
       <AvatarLogo />
     </div>
   );

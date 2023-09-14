@@ -5,6 +5,7 @@ import ProtectedRoute from '@/components/protected-route';
 import { AuthContextProvider } from '@/context/auth-context';
 import ErrorPage from '@/pages/error-page';
 import HomePage from '@/pages/home-page';
+import BlogPage from '@/pages/post-page';
 import SignInPage from '@/pages/sign-in-page';
 
 function App() {
@@ -24,6 +25,14 @@ function App() {
           element={
             <ProtectedRoute>
               <HomePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/post/:id"
+          element={
+            <ProtectedRoute>
+              <BlogPage />
             </ProtectedRoute>
           }
         />

@@ -8,11 +8,11 @@ export const ALERT_TYPE = {
   danger: 'danger',
 };
 
-const getAlertColor = (buttonType = ALERT_TYPE.info) =>
+const getAlertColor = (alertType = ALERT_TYPE.info) =>
   ({
     [ALERT_TYPE.info]: 'white',
     [ALERT_TYPE.danger]: 'red',
-  })[buttonType];
+  })[alertType];
 
 interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   alertType?: string;

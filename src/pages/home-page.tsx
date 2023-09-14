@@ -1,5 +1,5 @@
-import FilterablePostList from '@/components/blog-list';
 import { withHelloLogger } from '@/components/logger';
+import PostList from '@/components/post-list';
 import Alert, { ALERT_TYPE } from '@/components/ui/alert';
 import Spinner from '@/components/ui/spinner';
 import { usePosts } from '@/hooks/use-posts';
@@ -24,7 +24,7 @@ function HomePage() {
     return <Alert> No posts found. Try again later.</Alert>;
   }
 
-  return <FilterablePostList posts={posts} />;
+  return <PostList posts={posts} />;
 }
 
 export default withHelloLogger(HomePage);
