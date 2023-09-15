@@ -5,7 +5,7 @@ import useSWR from 'swr';
 import { USERS_URL_KEY } from '@/constants/constants';
 import { useUsers } from '@/hooks/use-users';
 import { fetcher } from '@/service/fetch-service';
-import { PostResponse, UserResponse } from '@/types';
+import { CommentResponse, PostResponse, UserResponse } from '@/types';
 
 const POSTS_URL_KEY = 'posts';
 
@@ -55,16 +55,20 @@ export const usePost = (id?: string) => {
     isLoading: usersLoading,
   } = useSWR<UserResponse>(() => (post ? `${USERS_URL_KEY}/${post?.userId}` : null), fetcher);
 
+  const {
+    data: comments,
+    error: commentsError,
+    isLoading: commentsLoading,
+  } = useSWR<CommentResponse[], AxiosError>(() => (id ? `${POSTS_URL_KEY}/${id}/comments` : null), fetcher);
+
   const postData = {
     ...post,
     author: user?.name,
+    comments: comments,
   };
 
-  const error = postError || userError;
-  const isLoading = postLoading || usersLoading;
-
-  console.log('POST: ', postData);
-  console.log('ID: ', id);
+  const error = postError || userError || commentsError;
+  const isLoading = postLoading || usersLoading || commentsLoading;
 
   return {
     data: postData,

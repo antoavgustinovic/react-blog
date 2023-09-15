@@ -11,12 +11,12 @@ const Avatar: React.FC<AvatarProps> = ({ avatarType }) => {
   return (
     <div
       className={twMerge(
-        'relative w-10 h-10 overflow-hidden rounded-full',
+        'relative w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 overflow-hidden rounded-full',
         avatarType === 'light' ? 'bg-martian-lightgray' : 'bg-martian-dark',
       )}
     >
       <svg
-        className="absolute w-12 h-12 text-gray-400 -left-1"
+        className="absolute text-gray-400 w-10 h-10 -left-1 sm:w-10 sm:h-10 md:w-12 md:h-12"
         fill="currentColor"
         viewBox="0 0 20 20"
         xmlns="http://www.w3.org/2000/svg"

@@ -1,3 +1,4 @@
+// TODO maybe separate in different files
 export interface PostResponse {
   userId: number;
   id: number;
@@ -33,4 +34,12 @@ interface UserAddress {
 
 export interface PostProps extends PostResponse {
   author: string;
+}
+
+export interface CommentResponse {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string;
 }
