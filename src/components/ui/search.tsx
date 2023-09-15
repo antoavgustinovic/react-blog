@@ -28,7 +28,7 @@ const Search = ({ value, onChange }: SearchProps) => {
       <input
         type="search"
         id="default-search"
-        className="w-full p-4 pl-10 text-sm bg-transparent border rounded-xl  border-martian-lightgray placeholder-martian-lightgray text-white  focus:border-martian-red focus:outline-martian-red"
+        className="w-full p-4 pl-10 text-sm bg-transparent border rounded-xl placeholder:italic border-martian-lightgray placeholder-martian-lightgray text-white  focus:border-martian-red focus:outline-martian-red"
         placeholder="Search..."
         value={value}
         onChange={onChange}

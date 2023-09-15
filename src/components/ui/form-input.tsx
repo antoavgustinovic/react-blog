@@ -12,14 +12,14 @@ const FormInput: React.FC<FormInputProps> = ({ label, ...otherProps }) => {
       <input
         {...otherProps}
         className={twMerge(
-          'bg-white text-gray-500 font-normal text-xl py-2 px-2 w-full border-b border-gray-400 focus:outline-none focus:border-black',
+          'bg-transparent text-martian-gray font-normal text-xl py-2 px-2 w-full border-b border-gray-400 focus:outline-none focus:border-martian-red peer',
         )}
       />
       {label && (
         <label
           className={`${
-            otherProps.value ? '-top-4 text-black text-xs' : 'text-martian-darkgray top-2'
-          } text-subColor text-md font-normal absolute left-2 transition-all duration-300`}
+            otherProps.value ? '-top-4 text-xs' : 'top-2 peer-focus:text-martian-red'
+          } text-martian-darkgray text-md font-normal absolute left-2 transition-all duration-300`}
         >
           {label}
         </label>

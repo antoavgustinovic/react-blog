@@ -16,7 +16,10 @@ function SignInPage() {
   }, [navigate, isLoggedIn]);
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-7xl font-bold mb-16 text-center">
+        Welcome to React <span className="text-martian-red">Blog</span>
+      </h1>
       <SignInForm />
     </div>
   );

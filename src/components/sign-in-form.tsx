@@ -5,7 +5,7 @@ import Button from '@/components/ui/button';
 import FormInput from '@/components/ui/form-input.js';
 import { useAuth } from '@/context/auth-context';
 
-// TODO create a Compound Form
+// TODO create a Compound Form and chagne style
 interface SignInFormFieldProps {
   email: string;
   password: string;
@@ -38,14 +38,13 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="flex flex-col w-1/3 border-2 rounded-xl p-6 bg-white">
-      <h2 className="my-2 text-4xl text-martian-dark m-auto">Sign in</h2>
-      <span className="mb-6 text-martian-darkgray opacity-50 m-auto">Sign in with your email and password</span>
+    <div className="flex flex-col sm:w-2/3 md:w-1/2 lg:w-1/3 xl:w-2/6 p-6 bg-transparent ">
+      <h2 className="my-2 text-4xl text-martian-lightgray text-center">Sign in</h2>
+      <span className="mb-6 text-martian-gray opacity-50 text-center">Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput label="Email" type="email" required onChange={handleChange} name="email" value={email} />
-
         <FormInput label="Password" type="password" required onChange={handleChange} name="password" value={password} />
-        <div className="flex justify-between mt-6">
+        <div className="flex mt-6">
           <Button type="submit">Log In</Button>
         </div>
       </form>
