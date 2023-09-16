@@ -1,5 +1,4 @@
-import axios from 'axios';
-
+import axios from '@/components/config/axios';
 import { getResourceUrl } from '@/utils';
 
 export const fetcher = (resource: string) =>

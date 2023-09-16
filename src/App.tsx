@@ -1,6 +1,7 @@
 import { createBrowserRouter, createRoutesFromElements, Outlet, Route, RouterProvider } from 'react-router-dom';
 import { SWRConfig } from 'swr';
 
+import { AxiosInterceptor } from '@/components/config/axios';
 import { withHelloLogger } from '@/components/logger';
 import { AuthContextProvider } from '@/context/auth-context';
 import ErrorPage from '@/pages/error-page';
@@ -12,11 +13,13 @@ function App() {
     createRoutesFromElements(
       <Route
         element={
-          <SWRConfig value={{ fetcher }}>
-            <AuthContextProvider>
-              <Outlet />
-            </AuthContextProvider>
-          </SWRConfig>
+          <AuthContextProvider>
+            <AxiosInterceptor>
+              <SWRConfig value={{ fetcher }}>
+                <Outlet />
+              </SWRConfig>
+            </AxiosInterceptor>
+          </AuthContextProvider>
         }
         errorElement={<ErrorPage />}
       >
