@@ -1,5 +1,5 @@
 import { withHelloLogger } from '@/components/logger';
-import Label from '@/components/ui/label';
+import { Label } from '@/components/ui';
 import { useForm } from '@/context/form-context';
 
 interface FormInputLabelProps {

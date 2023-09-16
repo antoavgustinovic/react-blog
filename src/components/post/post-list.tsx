@@ -1,6 +1,6 @@
 import { withHelloLogger } from '@/components/logger';
 import { PostCardComponent as PostCard } from '@/components/post';
-import Alert from '@/components/ui/alert';
+import { Alert } from '@/components/ui';
 import { PostProps } from '@/types';
 
 interface PostListProps {

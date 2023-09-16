@@ -1,7 +1,7 @@
 import { isRouteErrorResponse, useNavigate, useRouteError } from 'react-router-dom';
 
 import { withHelloLogger } from '@/components/logger';
-import Button from '@/components/ui/button';
+import { Button } from '@/components/ui';
 
 // TODO get back to this later and see the condition
 function ErrorPage() {

@@ -1,5 +1,5 @@
 import { withHelloLogger } from '@/components/logger';
-import Avatar from '@/components/ui/avatar';
+import { Avatar } from '@/components/ui';
 
 interface CommentProps extends React.HTMLAttributes<HTMLElement> {
   name: string;

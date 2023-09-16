@@ -1,6 +1,6 @@
 import { FormInputLabel } from '@/components/form/form-input-label';
 import { withHelloLogger } from '@/components/logger';
-import Input from '@/components/ui/input';
+import { Input } from '@/components/ui';
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string;

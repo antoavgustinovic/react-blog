@@ -1,6 +1,6 @@
 import { Form, FormControl, FormErrorMessage, FormHelperText, FormInput } from '@/components/form';
 import { withHelloLogger } from '@/components/logger';
-import Button from '@/components/ui/button';
+import { Button } from '@/components/ui';
 import { useAuth } from '@/context/auth-context';
 import { SignInFormFieldProps } from '@/types';
 

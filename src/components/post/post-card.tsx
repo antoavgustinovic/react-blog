@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { withHelloLogger } from '@/components/logger';
-import PostCard from '@/components/ui/post-card';
+import { PostCard } from '@/components/ui';
 import { PostProps } from '@/types';
 
 interface PostCardProps {

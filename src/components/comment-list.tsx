@@ -1,5 +1,5 @@
 import { withHelloLogger } from '@/components/logger';
-import Comment from '@/components/ui/comment';
+import { Comment } from '@/components/ui';
 import { CommentResponse } from '@/types';
 
 interface CommentListProps {

@@ -2,9 +2,9 @@ import { useParams } from 'react-router-dom';
 
 import CommentList from '@/components/comment-list';
 import { withHelloLogger } from '@/components/logger';
-import Alert from '@/components/ui/alert';
-import Post from '@/components/ui/post';
-import Spinner from '@/components/ui/spinner';
+import { Alert } from '@/components/ui';
+import { Post } from '@/components/ui';
+import { Spinner } from '@/components/ui';
 import { usePost } from '@/hooks/use-posts';
 
 // TODO see why when scrolling down on home page and clicking the Post opens the post but scrolled down

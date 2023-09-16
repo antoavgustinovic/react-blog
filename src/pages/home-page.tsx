@@ -2,9 +2,9 @@ import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 
 import { withHelloLogger } from '@/components/logger';
 import { PostList } from '@/components/post';
-import Alert from '@/components/ui/alert';
-import Search from '@/components/ui/search';
-import Spinner from '@/components/ui/spinner';
+import { Alert } from '@/components/ui';
+import { Search } from '@/components/ui';
+import { Spinner } from '@/components/ui';
 import { useDebounce } from '@/hooks/use-debounce';
 import { usePosts } from '@/hooks/use-posts';
 
