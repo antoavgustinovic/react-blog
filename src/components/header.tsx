@@ -1,6 +1,5 @@
 import { withHelloLogger } from '@/components/logger';
 import Button from '@/components/ui/button';
-import { BUTTON_TYPE } from '@/constants/constants';
 import { useAuth } from '@/context/auth-context';
 
 const Header = () => {
@@ -13,7 +12,7 @@ const Header = () => {
           React <span className="text-martian-red">Blog</span>
         </a>
       </h1>
-      <Button buttonType={BUTTON_TYPE.red} onClick={handleLogout}>
+      <Button buttonType="red" onClick={handleLogout}>
         Logout
       </Button>
     </header>

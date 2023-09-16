@@ -1,7 +1,6 @@
+import { withHelloLogger } from '@/components/logger';
+import Comment from '@/components/ui/comment';
 import { CommentResponse } from '@/types';
-
-import Comment from './ui/comment';
-import { withHelloLogger } from './logger';
 
 interface CommentListProps {
   comments: CommentResponse[];
@@ -19,7 +18,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments }) => {
       </div>
       {hasComments ? (
         comments.map((comment) => (
-          <Comment key={comment.id} name={comment.name} body={comment.body} email={comment.email} />
+          <Comment key={comment.id} name={comment.name} body={comment.body} email={comment.email} userAvatar />
         ))
       ) : (
         <div>No comments found.</div>

@@ -4,19 +4,15 @@ import { twMerge } from 'tailwind-merge';
 import { withHelloLogger } from '@/components/logger';
 
 // TODO go through all Ui components and make them as reusable as possible
-export const ALERT_TYPE = {
-  info: 'info',
-  danger: 'danger',
-};
 
-const getAlertColor = (alertType = ALERT_TYPE.info) =>
+const getAlertColor = (alertType = 'info') =>
   ({
-    [ALERT_TYPE.info]: 'white',
-    [ALERT_TYPE.danger]: 'red',
+    info: 'white',
+    danger: 'red',
   })[alertType];
 
 interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
-  alertType?: string;
+  alertType?: 'info' | 'danger';
 }
 
 const Alert: React.FC<PropsWithChildren<AlertProps>> = ({ children, alertType, className, ...otherProps }) => {

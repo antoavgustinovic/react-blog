@@ -5,11 +5,12 @@ interface PostProps {
   title: string;
   body: string;
   author?: string;
+  userAvatar?: boolean;
   onClick: React.MouseEventHandler<HTMLElement>;
 }
 
 // TODO try to extract the svgs
-const PostCard: React.FC<PostProps> = ({ title, body, author, onClick }) => {
+const PostCard: React.FC<PostProps> = ({ title, body, author, userAvatar, onClick }) => {
   return (
     <article className="flex flex-col justify-between p-6 bg-martian-lightgray rounded-lg border border-martian-darkgray shadow-md">
       <div className="flex justify-between items-center mb-5 text-martian-darkgray">
@@ -30,10 +31,12 @@ const PostCard: React.FC<PostProps> = ({ title, body, author, onClick }) => {
       </h2>
       <p className="mb-5 font-light text-martian-dark line-clamp-4">{body}</p>
       <div className="flex justify-between items-center">
-        <div className="flex items-center space-x-4">
-          <Avatar />
-          <span className="font-medium text-martian-red">{author}</span>
-        </div>
+        {author && (
+          <div className="flex items-center space-x-4">
+            {userAvatar && <Avatar />}
+            <span className="font-medium text-martian-red">{author}</span>
+          </div>
+        )}
         <div
           className="inline-flex items-center font-medium text-martian-red hover:underline hover:cursor-pointer"
           onClick={onClick}

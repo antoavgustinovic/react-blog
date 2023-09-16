@@ -16,7 +16,7 @@ const PostCardComponent: React.FC<PostCardProps> = ({ post }) => {
     navigate(`/post/${post.id}`);
   };
 
-  return <PostCard title={title} body={body} author={author} onClick={handleOnClick} />;
+  return <PostCard title={title} body={body} author={author} userAvatar onClick={handleOnClick} />;
 };
 
 const PostCardComponentWithHelloLogger = withHelloLogger(PostCardComponent);

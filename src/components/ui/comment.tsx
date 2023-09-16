@@ -1,22 +1,23 @@
 import { withHelloLogger } from '@/components/logger';
 import Avatar from '@/components/ui/avatar';
-import { CommentResponse } from '@/types';
 
-// TODO go through all types and extend the Reponse ones
-interface CommentProps extends Omit<CommentResponse, 'id' | 'postId'> {}
+interface CommentProps extends React.HTMLAttributes<HTMLElement> {
+  name: string;
+  body: string;
+  email?: string;
+  userAvatar?: boolean;
+}
 
-const Comment: React.FC<CommentProps> = ({ name, body, email }) => {
+const Comment: React.FC<CommentProps> = ({ name, body, email, userAvatar }) => {
   return (
     <article className="p-6 mb-6 text-base bg-martian-darkgray rounded-lg">
-      <footer className="flex justify-between items-center mb-2">
-        <div className="flex items-center">
-          <div className="inline-flex items-center sm:space-x-3">
-            <Avatar />
-            <span className="text-md font-bold text-white">{name}</span>
-            <span className="text-sm text-martian-gray">({email})</span>
-          </div>
+      <div className="flex items-center justify-between mb-2">
+        <div className="inline-flex items-center sm:space-x-3">
+          {userAvatar && <Avatar />}
+          <span className="text-md font-bold text-white">{name}</span>
+          {email && <span className="text-sm text-martian-gray">({email})</span>}
         </div>
-      </footer>
+      </div>
       <p className="text-martian-lightgray">{body}</p>
     </article>
   );

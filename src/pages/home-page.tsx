@@ -2,7 +2,7 @@ import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 
 import { withHelloLogger } from '@/components/logger';
 import { PostList } from '@/components/post';
-import Alert, { ALERT_TYPE } from '@/components/ui/alert';
+import Alert from '@/components/ui/alert';
 import Search from '@/components/ui/search';
 import Spinner from '@/components/ui/spinner';
 import { useDebounce } from '@/hooks/use-debounce';
@@ -26,7 +26,7 @@ function HomePage() {
 
   if (error) {
     return (
-      <Alert alertType={ALERT_TYPE.danger}>
+      <Alert alertType="danger">
         There was an error while retrieving posts. Please refresh the page or try again later.
       </Alert>
     );
