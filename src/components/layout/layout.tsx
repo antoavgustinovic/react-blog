@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 
-import Footer from '@/components/footer';
-import Header from '@/components/header';
+import { Footer } from '@/components/layout';
+import { Header } from '@/components/layout';
 import { withHelloLogger } from '@/components/logger';
 
 const Layout: React.FC<PropsWithChildren> = ({ children }) => {
@@ -14,4 +14,5 @@ const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export default withHelloLogger(Layout);
+const LayoutWithHelloLogger = withHelloLogger(Layout);
+export { LayoutWithHelloLogger as Layout };

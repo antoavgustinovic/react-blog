@@ -1,4 +1,4 @@
-import { HELLO_MESSAGE } from '@/constants/constants';
+export const HELLO_MESSAGE = 'Hello from';
 
 export const withLogger = <P extends object>(WrappedComponent: React.ComponentType<P>, message: string) => {
   return function withLogger(props: P) {

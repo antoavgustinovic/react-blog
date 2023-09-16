@@ -19,4 +19,5 @@ const Header = () => {
   );
 };
 
-export default withHelloLogger(Header);
+const HeaderWithHelloLogger = withHelloLogger(Header);
+export { HeaderWithHelloLogger as Header };

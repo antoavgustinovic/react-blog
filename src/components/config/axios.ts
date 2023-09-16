@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
 import { useAuth } from '@/context/auth-context';
 
 const axiosInstance = axios.create();
 
-const AxiosInterceptor = ({ children }: { children: JSX.Element }) => {
+const AxiosInterceptor: React.FC<PropsWithChildren> = ({ children }) => {
   const { handleLogout } = useAuth();
 
   useEffect(() => {

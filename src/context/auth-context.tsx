@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useContext, useMemo } from 'react';
+import { createContext, PropsWithChildren, useCallback, useContext, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { withHelloLogger } from '@/components/logger';
@@ -19,7 +19,7 @@ export const AuthContext = createContext<AuthContextType>({
   handleLogout: () => {},
 });
 
-function AuthContextProvider({ children }: { children: ReactNode }) {
+const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isLoggedIn, setLoggedIn, removeLoggedIn] = useLocalStorage<boolean>({
@@ -57,7 +57,7 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-}
+};
 
 const AuthContextProviderWithHelloLogger = withHelloLogger(AuthContextProvider);
 export { AuthContextProviderWithHelloLogger as AuthContextProvider };

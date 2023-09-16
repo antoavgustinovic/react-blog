@@ -46,22 +46,25 @@ export const usePost = (id?: string) => {
   } = useSWR<PostResponse, AxiosError>(() => (id ? `${POSTS_URL_KEY}/${id}` : null));
 
   const {
-    data: user,
-    error: userError,
-    isLoading: usersLoading,
-  } = useSWR<UserResponse>(() => (post ? `${USERS_URL_KEY}/${post?.userId}` : null));
-
-  const {
     data: comments,
     error: commentsError,
     isLoading: commentsLoading,
   } = useSWR<CommentResponse[], AxiosError>(() => (id ? `${POSTS_URL_KEY}/${id}/comments` : null));
 
-  const postData = {
-    ...post,
-    author: user?.name,
-    comments: comments,
-  };
+  const {
+    data: user,
+    error: userError,
+    isLoading: usersLoading,
+  } = useSWR<UserResponse>(() => (post ? `${USERS_URL_KEY}/${post?.userId}` : null));
+
+  const postData = useMemo(
+    () => ({
+      ...post,
+      author: user?.name,
+      comments: comments,
+    }),
+    [comments, post, user?.name],
+  );
 
   const error = postError || userError || commentsError;
   const isLoading = postLoading || usersLoading || commentsLoading;
@@ -71,19 +74,4 @@ export const usePost = (id?: string) => {
     error,
     isLoading,
   };
-  // const { data: posts, error, isLoading } = usePosts();
-
-  // const post =
-  //   id &&
-  //   posts.find((post) => {
-  //     return post.id === +id;
-  //   });
-
-  // return {
-  //   data: post,
-  //   error,
-  //   isLoading,
-  // };
 };
-
-// export const preloadPosts = () => preload(POSTS_URL_KEY, fetcher);

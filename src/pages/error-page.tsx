@@ -4,7 +4,7 @@ import { withHelloLogger } from '@/components/logger';
 import { Button } from '@/components/ui';
 
 // TODO get back to this later and see the condition
-function ErrorPage() {
+const ErrorPage = () => {
   const error = useRouteError();
   const navigate = useNavigate();
 
@@ -24,6 +24,6 @@ function ErrorPage() {
       </div>
     );
   }
-}
+};
 
 export default withHelloLogger(ErrorPage);

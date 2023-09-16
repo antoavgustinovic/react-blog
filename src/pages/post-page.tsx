@@ -8,7 +8,7 @@ import { Spinner } from '@/components/ui';
 import { usePost } from '@/hooks/use-posts';
 
 // TODO see why when scrolling down on home page and clicking the Post opens the post but scrolled down
-function PostPage() {
+const PostPage = () => {
   const { id } = useParams();
   const { data: post, error, isLoading } = usePost(id);
 
@@ -34,6 +34,6 @@ function PostPage() {
       {post.comments && <CommentList comments={post.comments} />}
     </>
   );
-}
+};
 
 export default withHelloLogger(PostPage);

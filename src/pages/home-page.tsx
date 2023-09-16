@@ -8,7 +8,7 @@ import { Spinner } from '@/components/ui';
 import { useDebounce } from '@/hooks/use-debounce';
 import { usePosts } from '@/hooks/use-posts';
 
-function HomePage() {
+const HomePage = () => {
   const { data: posts, error, isLoading } = usePosts();
   const [searchValue, setSearchValue] = useState<string>('');
   const debouncedSearchValue = useDebounce(searchValue, 400);
@@ -44,6 +44,6 @@ function HomePage() {
       <PostList posts={filteredPosts} />
     </>
   );
-}
+};
 
 export default withHelloLogger(HomePage);
