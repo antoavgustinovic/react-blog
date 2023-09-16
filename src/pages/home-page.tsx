@@ -17,7 +17,6 @@ function HomePage() {
     setSearchValue(e.target.value);
   }, []);
 
-  // TODO make it so it filters based on user after that's implemented
   const filteredPosts = useMemo(() => {
     return posts?.filter((post) => {
       const searchQuery = debouncedSearchValue.trim().toLowerCase();

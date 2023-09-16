@@ -1,12 +1,28 @@
-import { isRouteErrorResponse, useRouteError } from 'react-router-dom';
+import { isRouteErrorResponse, useNavigate, useRouteError } from 'react-router-dom';
 
 import { withHelloLogger } from '@/components/logger';
+import Button from '@/components/ui/button';
 
+// TODO make it better
 function ErrorPage() {
   const error = useRouteError();
+  const navigate = useNavigate();
 
   if (isRouteErrorResponse(error)) {
-    return <div>OOPS! Error.</div>;
+    return (
+      <div className="flex flex-col items-center justify-center h-screen mx-auto max-w-screen-xl">
+        <div className="mx-auto max-w-screen-sm text-center">
+          <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-martian-red">404</h1>
+          <p className="mb-4 text-3xl tracking-tight font-bold text-martian-lightgray md:text-4xl">Page not found.</p>
+          <p className="mb-4 text-lg font-light text-gray-500 dark:text-gray-400">
+            Sorry, we couldn’t find the page you’re looking for.
+          </p>
+        </div>
+        <Button className="flex justify-center" onClick={() => navigate('/')}>
+          Back to Homepage
+        </Button>
+      </div>
+    );
   }
 }
 
