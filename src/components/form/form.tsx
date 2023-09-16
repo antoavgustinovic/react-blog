@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useCallback, useState } from 'react';
 
 import { withHelloLogger } from '@/components/logger';
 import { FormContext } from '@/context/form-context';
@@ -15,25 +15,28 @@ const Form = ({ onSubmit, defaultValues, children }: FormProps) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formError, setFormError] = useState<string>('');
 
-  const setFieldValue = (field: string, value: string) => {
+  const setFieldValue = useCallback((field: string, value: string) => {
     setValues((prev) => ({ ...prev, [field]: value }));
     setFormError('');
-  };
+  }, []);
 
-  const setFieldError = (field: string, error: string) => {
+  const setFieldError = useCallback((field: string, error: string) => {
     setErrors((prev) => ({ ...prev, [field]: error }));
-  };
+  }, []);
 
-  const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const result = await onSubmit(values);
+  const onSubmitHandler = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const result = await onSubmit(values);
 
-    if (result instanceof Error) {
-      setFormError(result.message);
-    } else {
-      setValues({});
-    }
-  };
+      if (result instanceof Error) {
+        setFormError(result.message);
+      } else {
+        setValues({});
+      }
+    },
+    [onSubmit, values],
+  );
 
   return (
     <FormContext.Provider value={{ values, errors, formError, setFieldValue, setFieldError, setFormError }}>

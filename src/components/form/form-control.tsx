@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import { withHelloLogger } from '@/components/logger';
 import { useForm } from '@/context/form-context';
@@ -13,18 +13,21 @@ interface FormControlProps {
 const FormControl = ({ id, name, required, children }: FormControlProps) => {
   const { values, setFieldValue, setFieldError } = useForm();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldValue(name, event.target.value);
-    setFieldError(name, '');
-  };
+  const handleChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setFieldValue(name, event.target.value);
+      setFieldError(name, '');
+    },
+    [name, setFieldError, setFieldValue],
+  );
 
-  const handleBlur = () => {
+  const handleBlur = useCallback(() => {
     if (required && !values[name]) {
       setFieldError(name, 'This field is required.');
     } else {
       setFieldError(name, '');
     }
-  };
+  }, [name, required, setFieldError, values]);
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
