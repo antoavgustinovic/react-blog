@@ -32,7 +32,7 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const handleLogin = useCallback(
     (values: SignInFormFieldProps) => {
       const { email, password } = values ?? {};
-      if (email === 'test@mailinator.com' && password === 'test') {
+      if (email === import.meta.env.VITE_EMAIL && password === import.meta.env.VITE_PASSWORD) {
         setLoggedIn(true);
         navigate(from, { replace: true });
       }
