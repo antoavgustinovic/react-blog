@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-import { getResourceUrl } from '@/utils/service-helpers';
+import { getResourceUrl } from '@/utils';
 
-// TODO see how to handle errors and put a global fetcher
 export const fetcher = (resource: string) =>
   axios
     .get(getResourceUrl(resource), {

@@ -3,8 +3,6 @@ import { twMerge } from 'tailwind-merge';
 
 import { withHelloLogger } from '@/components/logger';
 
-// TODO go through all Ui components and make them as reusable as possible
-
 const getAlertColor = (alertType = 'info') =>
   ({
     info: 'white',

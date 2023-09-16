@@ -4,17 +4,12 @@ import useSWR from 'swr';
 
 import { USERS_URL_KEY } from '@/constants/constants';
 import { useUsers } from '@/hooks/use-users';
-import { fetcher } from '@/service/fetch-service';
 import { CommentResponse, PostResponse, UserResponse } from '@/types';
 
 const POSTS_URL_KEY = 'posts';
 
 export const usePosts = () => {
-  const {
-    data: posts,
-    error: postsError,
-    isLoading: postsLoading,
-  } = useSWR<PostResponse[], AxiosError>(POSTS_URL_KEY, fetcher);
+  const { data: posts, error: postsError, isLoading: postsLoading } = useSWR<PostResponse[], AxiosError>(POSTS_URL_KEY);
   const { data: users, error: usersError, isLoading: usersLoading } = useUsers();
 
   const extendedPosts = useMemo(() => {
@@ -48,18 +43,19 @@ export const usePost = (id?: string) => {
     data: post,
     error: postError,
     isLoading: postLoading,
-  } = useSWR<PostResponse, AxiosError>(() => (id ? `${POSTS_URL_KEY}/${id}` : null), fetcher);
+  } = useSWR<PostResponse, AxiosError>(() => (id ? `${POSTS_URL_KEY}/${id}` : null));
+
   const {
     data: user,
     error: userError,
     isLoading: usersLoading,
-  } = useSWR<UserResponse>(() => (post ? `${USERS_URL_KEY}/${post?.userId}` : null), fetcher);
+  } = useSWR<UserResponse>(() => (post ? `${USERS_URL_KEY}/${post?.userId}` : null));
 
   const {
     data: comments,
     error: commentsError,
     isLoading: commentsLoading,
-  } = useSWR<CommentResponse[], AxiosError>(() => (id ? `${POSTS_URL_KEY}/${id}/comments` : null), fetcher);
+  } = useSWR<CommentResponse[], AxiosError>(() => (id ? `${POSTS_URL_KEY}/${id}/comments` : null));
 
   const postData = {
     ...post,
