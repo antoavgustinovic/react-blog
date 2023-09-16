@@ -19,4 +19,5 @@ const PostCardComponent: React.FC<PostCardProps> = ({ post }) => {
   return <PostCard title={title} body={body} author={author} onClick={handleOnClick} />;
 };
 
-export default withHelloLogger(PostCardComponent);
+const PostCardComponentWithHelloLogger = withHelloLogger(PostCardComponent);
+export { PostCardComponentWithHelloLogger as PostCardComponent };

@@ -1,5 +1,5 @@
 import { withHelloLogger } from '@/components/logger';
-import PostCard from '@/components/post-card';
+import { PostCardComponent as PostCard } from '@/components/post';
 import Alert from '@/components/ui/alert';
 import { PostProps } from '@/types';
 
@@ -23,4 +23,5 @@ const PostList: React.FC<PostListProps> = ({ posts }) => {
   );
 };
 
-export default withHelloLogger(PostList);
+const PostListWithHelloLogger = withHelloLogger(PostList);
+export { PostListWithHelloLogger as PostList };

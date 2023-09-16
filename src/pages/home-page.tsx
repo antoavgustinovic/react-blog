@@ -1,7 +1,7 @@
 import { ChangeEvent, useCallback, useMemo, useState } from 'react';
 
 import { withHelloLogger } from '@/components/logger';
-import PostList from '@/components/post-list';
+import { PostList } from '@/components/post';
 import Alert, { ALERT_TYPE } from '@/components/ui/alert';
 import Search from '@/components/ui/search';
 import Spinner from '@/components/ui/spinner';
