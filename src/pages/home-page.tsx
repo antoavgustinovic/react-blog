@@ -1,28 +1,28 @@
-import { ChangeEvent, useCallback, useMemo, useState } from 'react';
-
 import { withHelloLogger } from '@/components/logger';
+import Pagination from '@/components/pagination';
 import { PostList } from '@/components/post';
 import { Alert } from '@/components/ui';
 import { Search } from '@/components/ui';
 import { Spinner } from '@/components/ui';
 import { useDebounce } from '@/hooks/use-debounce';
+import { useFilteredPosts } from '@/hooks/use-filtered-posts';
+import { usePaginatedPosts } from '@/hooks/use-paginated-posts';
+import { usePagination } from '@/hooks/use-pagination';
 import { usePosts } from '@/hooks/use-posts';
+import { useSearch } from '@/hooks/use-search';
 
 const HomePage = () => {
   const { data: posts, error, isLoading } = usePosts();
-  const [searchValue, setSearchValue] = useState<string>('');
+  const { searchValue, handleSearch } = useSearch();
   const debouncedSearchValue = useDebounce(searchValue, 400);
+  const { currentPage, itemsPerPage, handlePageChange, handleItemsPerPageChange } = usePagination({
+    initialPage: 1,
+    initialItemsPerPage: 9,
+  });
+  const filteredPosts = useFilteredPosts({ posts, searchQuery: debouncedSearchValue });
+  const paginatedPosts = usePaginatedPosts({ posts: filteredPosts, currentPage, itemsPerPage });
 
-  const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  }, []);
-
-  const filteredPosts = useMemo(() => {
-    return posts?.filter((post) => {
-      const searchQuery = debouncedSearchValue.trim().toLowerCase();
-      return post.author.toLowerCase().startsWith(searchQuery);
-    });
-  }, [debouncedSearchValue, posts]);
+  const totalPages = Math.ceil((filteredPosts?.length || 0) / itemsPerPage);
 
   if (error) {
     return (
@@ -41,7 +41,14 @@ const HomePage = () => {
       <div className="flex justify-end py-6">
         <Search value={searchValue} onChange={handleSearch} />
       </div>
-      <PostList posts={filteredPosts} />
+      <PostList posts={paginatedPosts} />
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        itemsPerPage={itemsPerPage}
+        onPageChange={handlePageChange}
+        onItemsPerPageChange={handleItemsPerPageChange}
+      />
     </>
   );
 };

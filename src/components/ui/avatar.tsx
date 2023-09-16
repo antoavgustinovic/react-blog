@@ -2,7 +2,6 @@ import { twMerge } from 'tailwind-merge';
 
 import { withHelloLogger } from '@/components/logger';
 
-// TODO: maybe the same for Button and Alert
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   avatarType?: 'dark' | 'light';
 }

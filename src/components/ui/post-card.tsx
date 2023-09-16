@@ -9,7 +9,6 @@ interface PostProps {
   onClick: React.MouseEventHandler<HTMLElement>;
 }
 
-// TODO try to extract the svgs
 const PostCard: React.FC<PostProps> = ({ title, body, author, userAvatar, onClick }) => {
   return (
     <article className="flex flex-col justify-between p-6 bg-martian-lightgray rounded-lg border border-martian-darkgray shadow-md">

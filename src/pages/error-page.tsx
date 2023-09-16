@@ -3,7 +3,6 @@ import { isRouteErrorResponse, useNavigate, useRouteError } from 'react-router-d
 import { withHelloLogger } from '@/components/logger';
 import { Button } from '@/components/ui';
 
-// TODO get back to this later and see the condition
 const ErrorPage = () => {
   const error = useRouteError();
   const navigate = useNavigate();

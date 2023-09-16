@@ -7,7 +7,6 @@ import { Post } from '@/components/ui';
 import { Spinner } from '@/components/ui';
 import { usePost } from '@/hooks/use-posts';
 
-// TODO see why when scrolling down on home page and clicking the Post opens the post but scrolled down
 const PostPage = () => {
   const { id } = useParams();
   const { data: post, error, isLoading } = usePost(id);
