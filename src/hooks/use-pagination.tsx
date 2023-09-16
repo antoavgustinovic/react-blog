@@ -15,6 +15,7 @@ export const usePagination = ({ initialPage, initialItemsPerPage }: UsePaginatio
 
   const handleItemsPerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setItemsPerPage(Number(e.target.value));
+    setCurrentPage(1);
   };
 
   return { currentPage, itemsPerPage, handlePageChange, handleItemsPerPageChange };
