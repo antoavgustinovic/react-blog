@@ -43,3 +43,8 @@ export interface CommentResponse {
   email: string;
   body: string;
 }
+
+export interface SignInFormFieldProps {
+  email: string;
+  password: string;
+}

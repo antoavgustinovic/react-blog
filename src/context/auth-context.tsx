@@ -3,12 +3,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { withHelloLogger } from '@/components/logger';
 import useLocalStorage from '@/hooks/use-local-storage';
+import { SignInFormFieldProps } from '@/types';
 
 const USER_LOGGED_IN = 'userLoggedIn';
 
 interface AuthContextType {
   isLoggedIn?: boolean | null;
-  handleLogin: (username: string, password: string) => void;
+  handleLogin: (values: SignInFormFieldProps) => void | Error;
   handleLogout: () => void;
 }
 
@@ -29,13 +30,14 @@ function AuthContextProvider({ children }: { children: ReactNode }) {
   const from: string = (location.state?.from?.pathname as string) || '/app';
 
   const handleLogin = useCallback(
-    (email: string, password: string) => {
+    (values: SignInFormFieldProps) => {
+      const { email, password } = values ?? {};
       if (email === 'test@mailinator.com' && password === 'test') {
         setLoggedIn(true);
         navigate(from, { replace: true });
       }
 
-      // TODO handle when username/password not correct
+      return Error('Provided email and password do not match. Please try again!');
     },
     [from, navigate, setLoggedIn],
   );
