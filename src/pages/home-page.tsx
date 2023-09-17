@@ -13,12 +13,12 @@ import { useSearch } from '@/hooks/use-search';
 
 const HomePage = () => {
   const { data: posts, error, isLoading } = usePosts();
-  const { searchValue, handleSearch } = useSearch();
-  const debouncedSearchValue = useDebounce(searchValue, 400);
   const { currentPage, itemsPerPage, handlePageChange, handleItemsPerPageChange } = usePagination({
     initialPage: 1,
     initialItemsPerPage: 9,
   });
+  const { searchValue, handleSearch } = useSearch();
+  const debouncedSearchValue = useDebounce(searchValue, 400, () => handlePageChange(1));
   const filteredPosts = useFilteredPosts({ posts, searchQuery: debouncedSearchValue });
   const paginatedPosts = usePaginatedPosts({ posts: filteredPosts, currentPage, itemsPerPage });
 

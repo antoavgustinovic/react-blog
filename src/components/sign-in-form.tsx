@@ -1,4 +1,4 @@
-import { Form, FormControl, FormErrorMessage, FormHelperText, FormInput } from '@/components/form';
+import { Form, FormControl, FormErrorMessage, FormInput } from '@/components/form';
 import { withHelloLogger } from '@/components/logger';
 import { Button } from '@/components/ui';
 import { useAuth } from '@/context/auth-context';
@@ -16,16 +16,14 @@ const SignInForm = () => {
       <Form onSubmit={handleSubmit}>
         <FormControl id="email" name="email" required>
           <FormInput name="email" label="Email" type="email" />
-          <FormHelperText name="email">Please enter your email.</FormHelperText>
           <FormErrorMessage name="email" />
         </FormControl>
         <FormControl id="password" name="password" required>
           <FormInput name="password" label="Password" type="password" />
-          <FormHelperText name="password">Please enter your password.</FormHelperText>
           <FormErrorMessage name="password" />
         </FormControl>
         <FormErrorMessage name="form" />
-        <Button className="w-full mt-3" type="submit">
+        <Button className="w-full mt-9" type="submit">
           Log In
         </Button>
       </Form>
