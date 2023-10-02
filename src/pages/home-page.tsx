@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { withHelloLogger } from '@/components/logger';
 import Pagination from '@/components/pagination';
 import { PostList } from '@/components/post';
@@ -18,7 +20,11 @@ const HomePage = () => {
     initialItemsPerPage: 9,
   });
   const { searchValue, handleSearch } = useSearch();
-  const debouncedSearchValue = useDebounce(searchValue, 400, () => handlePageChange(1));
+  const debouncedSearchValue = useDebounce(
+    searchValue,
+    400,
+    useCallback(() => handlePageChange(1), [handlePageChange]),
+  );
   const filteredPosts = useFilteredPosts({ posts, searchQuery: debouncedSearchValue });
   const paginatedPosts = usePaginatedPosts({ posts: filteredPosts, currentPage, itemsPerPage });
 
